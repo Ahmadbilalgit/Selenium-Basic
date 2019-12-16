@@ -24,8 +24,9 @@ namespace First_Test
             driver.Navigate().GoToUrl("http://116.203.214.214/");
 
 
-            
+
             IWebElement Userid = driver.FindElement(By.Name("email"));
+
             Userid.Click();
             Userid.SendKeys("test@abc.com");
             Thread.Sleep(3000);
@@ -37,18 +38,41 @@ namespace First_Test
 
 
 
-           IWebElement Button = driver.FindElement(By.XPath("/html/body/div/div/div/div/div/div/form/div[5]/button"));
-           Button.Click();
+            IWebElement Button = driver.FindElement(By.XPath("/html/body/div/div/div/div/div/div/form/div[5]/button"));
+            if (Userid.Displayed)
+            {
 
+                Greenmessage("The element found");
+            }
 
-            // IWebelement element = driver.FindElement(By.xpath("xpath of Webelement"));
+            else
 
-            // Boolean status = element.Enabled;
+            {
+                Redmessage("The element not found");
+            }
+
+            Button.Click();
             Thread.Sleep(3000);
             driver.Close();
             driver.Quit();
 
         }
 
+        private static void Greenmessage(string v)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.WriteLine(v);
+            Console.ForegroundColor = ConsoleColor.White;
+
+        }
+
+        private static void Redmessage(string x)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            System.Console.WriteLine(x);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+       
     }
 }
